@@ -1,0 +1,95 @@
+<div>
+    <div>
+        <h3>Restaurant Aktiva</h3>
+    </div>
+    <div class="table-one">
+        <div class="box">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr (click)="selectArticl(item)"
+                        *ngFor="let item of article">
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="box">
+            <form [formGroup]="form">
+                <div>
+                    <label>Product Name</label><br>
+                    <input type="text"
+                           formControlName="name">
+                </div>
+                <div>
+                    <label>Price</label><br>
+                    <input type="text"
+                           formControlName="price">
+                </div>
+                <div>
+                    <label>Quantity</label><br>
+                    <input type="text"
+                           formControlName="quantity"
+                           (input)="calculate()">
+                </div>
+                <div>
+                    <label>Total</label><br>
+                    <input type="text"
+                           formControlName="total"
+                           value="0">
+                </div>
+                <div class="button-first">
+                    <button (click)="add()">
+                        Add
+                    </button>
+                </div>
+            </form>
+            <div>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Sum</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of selectArticle;let index=index">
+                                <td>{{item.name}}</td>
+                                <td>{{item.quantity}}</td>
+                                <td>{{item.price}}</td>
+                                <td>{{item.sum}}</td>
+                                <td></td>
+                                <td>
+                                    <button (click)="deleteArticle(index)">X</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div><br><br><br><br>
+                    <div>
+                        <h3>{{totalAmount}}</h3>
+                    </div>
+                    <div><br>
+                        <button (click)="order()"
+                                *ngIf="show">Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

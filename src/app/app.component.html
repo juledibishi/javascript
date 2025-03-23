@@ -1,0 +1,8 @@
+<ul>
+    <li *ngFor="let item of menu"
+        [routerLink]="item"
+        routerLinkActive="text-bold">{{item}}</li>
+</ul>
+
+<hr>
+<router-outlet></router-outlet>

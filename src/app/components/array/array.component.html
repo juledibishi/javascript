@@ -1,0 +1,22 @@
+<!-- {{array | json}} -->
+<div *ngFor="let item of employess">
+    <p>{{item.name}}</p>
+    <p>{{item.age}}</p>
+</div>
+
+<div>
+    <input type="text"
+           [(ngModel)]="searchText"
+           (input)="filterStudents()">
+    <table>
+        <th>Name</th>
+        <tr *ngFor="let student of students">
+            <td>
+                {{student.name}}
+            </td>
+        </tr>
+    </table>
+
+    <p #paragraph>This is a text</p>
+    <button (click)="changeText()">Change the text</button>
+</div>

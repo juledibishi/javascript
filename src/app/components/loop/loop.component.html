@@ -1,0 +1,45 @@
+<p>loop works!</p>
+<div *ngIf="condition">Content to render when condition is true.</div>
+<br>
+
+<input type="text"
+       [(ngModel)]="name"
+       placeholder="Enter your name">
+<p>Your name is: {{ name }}</p>
+
+
+<br><br>
+
+<p>Items in cart: {{ cartItems }}</p>
+<button (click)="addItem()">Add to Cart</button>
+<br><br>
+
+<button (click)="logMessage()">logger</button>
+<br><br>
+
+<form [formGroup]="form"
+      (ngSubmit)="onSubmit()">
+    <label for="name">Name:</label>
+    <input id="name"
+           formControlName="name">
+    <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched">
+        Name is required.
+    </div>
+    <button type="submit"
+            [disabled]="form.invalid">Submit</button>
+</form><br>
+
+<p *ngIf="selectedNode$ | async as selectedNode">Selected Node: {{ selectedNode }}</p>
+
+<br>
+
+<button (click)="math(1,2)">test</button><br><br>
+
+
+<p appAppHighlight>
+    Hover over this text to see the highlight effect!
+</p>
+
+<button appAppHighlight>
+    Hover over this button to see the highlight effect!
+</button>

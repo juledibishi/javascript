@@ -1,0 +1,32 @@
+.table-one {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
+    padding: 10px;
+}
+
+.box {
+    border: 1px solid;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.box table {
+    width: 100%;
+}
+
+.table {
+    th {
+        text-align: left;
+    }
+
+    tr:hover {
+        background-color: aqua;
+        cursor: pointer;
+    }
+}
+
+.button-first {
+    text-align: center;
+    padding: 10px;
+}

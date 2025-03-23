@@ -1,0 +1,28 @@
+<p>Prindi</p>
+<p>{{year | selfMultiplication}}</p>
+<!-- <p>{{text | textUppercase}}</p> -->
+
+<p>{{ personalInformation | objectAccess:'name' }}</p>
+<p>Date: {{whatDate}}</p>
+<p>Date:{{whatDate | date | uppercase}}</p>
+<p>Date:{{whatDate | date | lowercase}}</p>
+<p>Date:{{whatDate | date:'shortTime'}}</p>
+<p>Date:{{whatDate | date: 'mm/dd/yyyy'}}</p>
+
+<div>
+    <p>{{file | customPipe}}</p>
+</div>
+
+<p>textPipe: {{text | uppercase}}</p>
+<p>textPipe: {{text | lowercase}}</p>
+
+<h1>the reverse of simplilearn is {{"simplilearn" | customPipe}}</h1>
+
+<h1>{{'Leti' | slice:1}}</h1>
+
+<app-person [name]="name"
+            [surname]="'Ibishi'"
+            [agePerson]="12"
+            [height]="1.80"
+            (age)="getAge($event)"
+            (weight)="getWeight($event)"></app-person>

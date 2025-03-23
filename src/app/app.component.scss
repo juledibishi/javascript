@@ -1,0 +1,21 @@
+.table {
+    width: 100%;
+    border: 1px solid;
+}
+
+ul {
+    display: flex;
+    gap: 1rem;
+
+    li {
+        list-style: none;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.text-bold {
+    font-weight: bold;
+}
