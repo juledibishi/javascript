@@ -29,6 +29,9 @@ import { ObjectAccessPipe } from './components/angular/pipes/object-access.pipe'
 import { CustomPipePipe } from './components/angular/pipes/custom-pipe.pipe';
 import { TimerComponent } from './components/angular/components/timer/timer/timer.component';
 import { AppHighlightDirective } from './directive/app-highlight.directive';
+import { RouterModule } from '@angular/router';
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { SearchComponent } from './components/search/search.component';
 
 
 @NgModule({
@@ -60,6 +63,8 @@ import { AppHighlightDirective } from './directive/app-highlight.directive';
     CustomPipePipe,
     TimerComponent,
     AppHighlightDirective,
+    SearchFormComponent,
+    SearchComponent,
 
 
   ],
@@ -68,7 +73,6 @@ import { AppHighlightDirective } from './directive/app-highlight.directive';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]

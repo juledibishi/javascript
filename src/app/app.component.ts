@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   menu = [
+    'search',
+    'search-form',
     'array',
     'object',
     'json',

@@ -1,4 +1,5 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 @Component({
@@ -107,9 +108,7 @@ export class ArrayComponent implements OnInit {
   filteredStudents: any[] = []
   searchText: string = '';
   filterCategory: any = [];
-  constructor() {
 
-  }
 
   data = [{
     name: 'Mateusz',
@@ -141,127 +140,210 @@ export class ArrayComponent implements OnInit {
     }],
   };
 
-  name = 'Julii';
+  name: string = '';
+  category: string = '';
 
   @ViewChild('paragraph') paragraph!: ElementRef
-  ngOnInit() {
+  constructor(private route: ActivatedRoute, private router: Router) {
 
-    //concat()– Kthen një array të ri duke bashkuar dy ose më shumë array.
-    const resConcat = this.arr.concat(this.cars)
-    console.log(resConcat);
-
-    //filter() – Krijon një array të ri me elementet që plotësojnë një kusht.
-    const newData = this.data.filter((el) => {
-      return this.selectedOptions.age.some((element) => element.value === el.age) &&
-        this.selectedOptions.names.some((element) => element.value === el.name)
-    })
-    console.log(newData);
-
-    const objOrArray = newData.length > 1 ? newData : newData[0];
-    let obj;
-    console.log(objOrArray);
-    if (newData.length > 1) {
-      obj = newData;
-    } else {
-      obj = newData[0]
-    }
-    console.log(obj);
-
-
-
-    const rezFilter = this.products.filter(p => p.category === 'Category B');
-    console.log(rezFilter);
-
-    const rezFilter1 = this.arr.filter(a => typeof a === 'object');
-    console.log(rezFilter1);
-    const rezFilter2 = this.arr.filter(a => typeof a === 'object' && a.name === 'Juled');
-    console.log(rezFilter2);
-    const rezFilter3 = this.arr.filter(a => typeof a === 'object' && a.age > 20);
-    console.log(rezFilter3);
-    const rezFilter4 = this.arr.filter(a => typeof a === 'number')
-    console.log(rezFilter4);
-
-    const rezFilter5 = this.students.filter(s => s.major === 'Programer')
-    console.log(rezFilter5);
-
-    //find() Kthen elementin e parë që plotëson kushtin ose undefined nëse nuk gjendet.
-    const rezFind1 = this.products.find(p => p.price === 99.99);
-    console.log(rezFind1);
-    const rezFind2 = this.data.find(d => d.age > 14);
-    console.log(rezFind2);
-    const rezFind3 = this.products.find(p => p.id === 3);
-    if (rezFind3) {
-      rezFind3.name = 'LetiProduct'
-    }
-    console.log(rezFind3);
-
-
-
-    //findIndex() Kthen indeksin e elementit të parë që përputhet me kushtin ose -1 nëse nuk gjendet.
-    const rezFindIndex = this.data.findIndex(d => d.age > 14)
-    console.log(rezFindIndex);
-
-
-    //map() Krijon një array të ri duke transformuar secilin element
-    const rezMap = this.products.map(p =>
-      p.id === 2 ? { ...p, name: 'test1' } : p
-    );
-    console.log(rezMap);
-    const rezMap1 = this.products.map(p => {
-      if (p.id === 3) {
-        return { ...p, name: 'Letii' };
-      } else {
-        return p;
+  }
+  onSearch() {
+    this.router.navigate(['/object'], {
+      queryParams: {
+        name: this.name,
+        category: this.category
       }
+    })
+  }
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.name = params['name'],
+        this.category = params['category']
     });
-    console.log(rezMap1);
-
-    //every() Kthen true nëse të gjithë elementet e array përmbushin kushtin, ndryshe false
-    const rezEvery = this.data.every(d => d.age > 11)
-    console.log(rezEvery);
-
-    //some() Kthen true nëse të paktën një element përmbush kushtin
-    const rezSome = this.data.some(d => d.age > 13)
-    console.log(rezSome);
-
-    //includes() Kontrollon nëse një vlerë ndodhet në array dhe kthen true ose false
-    const rezIncludes = this.cars.map(c => c.model);
-    const exists = rezIncludes.includes('Ferari')
-    console.log(exists);
 
 
+    this.filteredStudents = this.students;
 
-    //join() Kthen një string duke bashkuar elementet e array me një ndarës të caktuar.
-    const rezJoin = this.cars.map(c => c.model).join(' | ');
-    console.log(rezJoin);
+    const person = {
+      name: 'Juled',
+      contact: {
+        email: 'juled@example.com'
+      }
+    };
 
-    //slice() Kthen një pjesë të array pa e ndryshuar atë
-    const rezSlice = this.students.slice(0, 2)
-    console.log(rezSlice);
+    const email = person.contact.email;
+
+    console.log(email);
+    // //concat()– Kthen një array të ri duke bashkuar dy ose më shumë array.
+    // const resConcat = this.arr.concat(this.cars)
+    // console.log(resConcat);
+
+    // //filter() – Krijon një array të ri me elementet që plotësojnë një kusht.
+    // const newData = this.data.filter((el) => {
+    //   return this.selectedOptions.age.some((element) => element.value === el.age) &&
+    //     this.selectedOptions.names.some((element) => element.value === el.name)
+    // })
+    // console.log(newData);
+
+    // const objOrArray = newData.length > 1 ? newData : newData[0];
+    // console.log(objOrArray);
+    // let obj;
+    // if (newData.length > 1) {
+    //   obj = newData;
+    // } else {
+    //   obj = newData[0]
+    // }
+    // console.log(obj);
 
 
-    //splice() Ndryshon përmbajtjen e array duke shtuar, fshirë ose zëvendësuar elemente.
-    // const rezSplice = this.students.splice(1, 1);
-    // console.log(rezSplice);
+
+    // const rezFilter = this.products.filter(p => p.category === 'Category B');
+    // console.log(rezFilter);
+
+    // const rezFilter1 = this.arr.filter(a => typeof a === 'object');
+    // console.log(rezFilter1);
+    // const rezFilter2 = this.arr.filter(a => typeof a === 'object' && a.name === 'Juled');
+    // console.log(rezFilter2);
+    // const rezFilter3 = this.arr.filter(a => typeof a === 'object' && a.age > 20);
+    // console.log(rezFilter3);
+    // const rezFilter4 = this.arr.filter(a => typeof a === 'number')
+    // console.log(rezFilter4);
+
+    // const rezFilter5 = this.students.filter(s => s.major === 'Programer')
+    // console.log(rezFilter5);
+
+    // //find() Kthen elementin e parë që plotëson kushtin ose undefined nëse nuk gjendet.
+    // const rezFind1 = this.products.find(p => p.price === 99.99);
+    // console.log(rezFind1);
+    // const rezFind2 = this.data.find(d => d.age > 14);
+    // console.log(rezFind2);
+    // const rezFind3 = this.products.find(p => p.id === 3);
+    // if (rezFind3) {
+    //   rezFind3.name = 'LetiProduct'
+    // }
+    // console.log(rezFind3);
 
 
 
-    this.arr.forEach((x, index, tes) => { })
-    this.getAllStudents()
+    // //findIndex() Kthen indeksin e elementit të parë që përputhet me kushtin ose -1 nëse nuk gjendet.
+    // const rezFindIndex = this.data.findIndex(d => d.age > 14)
+    // console.log(rezFindIndex);
+
+
+    // //map() Krijon një array të ri duke transformuar secilin element
+    // const rezMap = this.products.map(p =>
+    //   p.id === 2 ? { ...p, name: 'test1' } : p
+    // );
+    // console.log(rezMap);
+    // const rezMap1 = this.products.map(p => {
+    //   if (p.id === 3) {
+    //     return { ...p, name: 'Letii' };
+    //   } else {
+    //     return p;
+    //   }
+    // });
+    // console.log(rezMap1);
+
+    // //every() Kthen true nëse të gjithë elementet e array përmbushin kushtin, ndryshe false
+    // const rezEvery = this.data.every(d => d.age > 11)
+    // console.log(rezEvery);
+
+    // //some() Kthen true nëse të paktën një element përmbush kushtin
+    // const rezSome = this.data.some(d => d.age > 13)
+    // console.log(rezSome);
+
+    // //includes() Kontrollon nëse një vlerë ndodhet në array dhe kthen true ose false
+    // const rezIncludes = this.cars.map(c => c.model);
+    // const exists = rezIncludes.includes('Ferari')
+    // console.log(exists);
+
+
+
+    // //join() Kthen një string duke bashkuar elementet e array me një ndarës të caktuar.
+    // const rezJoin = this.cars.map(c => c.model).join(' | ');
+    // console.log(rezJoin);
+
+    // //slice() Kthen një pjesë të array pa e ndryshuar atë
+    // const rezSlice = this.students.slice(0, 2)
+    // console.log(rezSlice);
+
+
+    // //splice() Ndryshon përmbajtjen e array duke shtuar, fshirë ose zëvendësuar elemente.
+    // // const rezSplice = this.students.splice(1, 1);
+    // // console.log(rezSplice);
+
+
+
+    // this.arr.forEach((x, index, tes) => { })
   }
 
-  getAllStudents() {
-    this.filteredStudents = []
-    this.filteredStudents = [...this.students]
-  }
+
 
   filterStudents() {
-    this.filteredStudents = this.students.filter(student => {
-      const name = (student.name.toLowerCase().includes(this.searchText.toLowerCase()))
-      console.log(name);
 
-      return name
+    this.filteredStudents = this.students.filter(s => {
+      return s.name.toLowerCase().includes(this.searchText.toLowerCase());
     })
+
+  }
+
+  clickHereForSet() {
+    const members = new Set(["Juled", "Hasan", "Amar"])
+    const numers = new Set(["JS", "TS", "Python"]);
+    const set = new Set();
+    set.add('x')
+    set.add('y')
+    if (!set.has('z')) {
+      set.add('z')
+    }
+    console.log(set);
+
+    const numbers = new Set();
+
+    for (let i = 1; i <= 6; i++) {
+      numbers.add(i);
+    }
+
+    console.log([...numbers]);
+
+    for (const n of numers) {
+      console.log(n.toLowerCase());
+
+    }
+    if (members.has("Juled")) {
+      console.log('po eshte juledi');
+      console.log(members.size);
+      members.delete("Hasan")
+      console.log(members);
+    }
+    const testMix = new Set();
+    testMix.add({ name: "Saqip", age: 24, gender: "male" })
+    console.log(testMix);
+
+
+  }
+
+  clickHereForMap() {
+    const map = new Map();
+
+    map.set("name", 27);
+    map.set("age", 26);
+
+    console.log(map.get("name"));
+
+    console.log(map.has("age"));
+    console.log(map);
+
+    console.log(map.size);
+    // const set = new Set(["apple", "banana", "apple"]);
+    // console.log(set); // Set { 'apple', 'banana' }
+
+    // const map = new Map();
+    // map.set("apple", 1);
+    // map.set("banana", 2);
+    // console.log(map); // Map { 'apple' => 1, 'banana' => 2 }
+
+
   }
 
   changeText() {

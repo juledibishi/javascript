@@ -19,8 +19,13 @@ import { SplitComponent } from './components/split/split.component';
 import { SwitchComponent } from './components/switch/switch.component';
 import { TestComponent } from './components/test/test.component';
 import { HomeComponent } from './components/angular/components/home/home.component';
+import { SearchFormComponent } from './components/search-form/search-form.component';
+import { SearchComponent } from './components/search/search.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
+  { path: 'search', component: SearchComponent },
+  { path: 'search-form', component: SearchFormComponent },
   { path: 'array', component: ArrayComponent },
   { path: 'date', component: DateComponent },
   { path: 'filter', component: FilterComponent },
@@ -43,7 +48,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), FormsModule,],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

@@ -1,22 +1,51 @@
 <!-- {{array | json}} -->
-<div *ngFor="let item of employess">
-    <p>{{item.name}}</p>
-    <p>{{item.age}}</p>
-</div>
+<!-- {{filteredStudents | json}} <br> -->
+<input type="text"
+       [(ngModel)]="searchText"
+       (input)="filterStudents()"
+       placeholder="Search by name">
 
 <div>
-    <input type="text"
-           [(ngModel)]="searchText"
-           (input)="filterStudents()">
+
     <table>
         <th>Name</th>
-        <tr *ngFor="let student of students">
+        <tr *ngFor="let student of filteredStudents ">
             <td>
                 {{student.name}}
             </td>
         </tr>
     </table>
-
-    <p #paragraph>This is a text</p>
-    <button (click)="changeText()">Change the text</button>
+    <!-- <button (click)="clickHereForSet()">Kliko Set Method</button>
+    <button (click)="clickHereForMap()">Kliko Map Method</button> -->
+    <!-- <p #paragraph>This is a text</p>
+    <button (click)="changeText()">Change the text</button> -->
 </div>
+<br><br>
+<!-- <div>
+    <h2>Search Results</h2>
+    <p><strong>Name:</strong> {{ name }}</p>
+    <p><strong>Category:</strong> {{ category }}</p>
+</div> -->
+
+<br><br>
+<!-- <div>
+    <h2>Kërko</h2>
+    <form (ngSubmit)="onSearch()">
+        <label>
+            Emri:
+            <input type="text"
+                   [(ngModel)]="name"
+                   name="name" />
+        </label>
+        <br />
+        <label>
+            Kategoria:
+            <input type="text"
+                   [(ngModel)]="category"
+                   name="category" />
+        </label>
+        <br /><br />
+        <button type="submit">Kërko</button>
+    </form>
+
+</div> -->

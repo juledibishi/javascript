@@ -1,0 +1,27 @@
+<form (ngSubmit)="submit()">
+    <label>
+        Emri:
+        <input type="text"
+               [(ngModel)]="name"
+               name="name" />
+    </label>
+    <br /><br />
+
+    <label>
+        Qyteti:
+        <input type="text"
+               [(ngModel)]="city"
+               name="city" />
+    </label>
+    <br /><br />
+
+    <label>
+        Nota:
+        <input type="number"
+               [(ngModel)]="grade"
+               name="note" />
+    </label>
+    <br /><br />
+
+    <button type="submit">Dërgo</button>
+</form>
